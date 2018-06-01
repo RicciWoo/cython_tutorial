@@ -1,3 +1,3 @@
 import simple_mp
 
-simple_mp.array_double(1000, 100000)
+simple_mp.array_double(10000, 100000)

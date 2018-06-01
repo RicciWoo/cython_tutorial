@@ -1,3 +1,3 @@
 import simple_ty
 
-simple_ty.array_double(1000, 100000)
+simple_ty.array_double(10000, 100000)
