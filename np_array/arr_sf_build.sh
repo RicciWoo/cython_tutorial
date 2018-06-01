@@ -1,0 +1,1 @@
+python arr_sf_setup.py build_ext --inplace

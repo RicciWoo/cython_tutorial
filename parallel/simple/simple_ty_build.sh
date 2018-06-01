@@ -1,0 +1,1 @@
+python simple_ty_setup.py build_ext --inplace

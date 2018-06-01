@@ -1,0 +1,1 @@
+python simple_mp_setup.py build_ext --inplace

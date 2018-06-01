@@ -1,0 +1,6 @@
+*.so
+*.c
+*.html
+build
+__pycache__
+.DS_Store

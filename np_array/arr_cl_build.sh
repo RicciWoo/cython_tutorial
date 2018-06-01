@@ -1,0 +1,1 @@
+python arr_cl_setup.py build_ext --inplace

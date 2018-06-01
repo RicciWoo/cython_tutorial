@@ -1,0 +1,1 @@
+python arr_oh_setup.py build_ext --inplace

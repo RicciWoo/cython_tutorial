@@ -1,0 +1,1 @@
+python arr_zoh_setup.py build_ext --inplace
