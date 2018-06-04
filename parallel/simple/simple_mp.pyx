@@ -9,7 +9,6 @@ import timeit
 @cython.wraparound(False)
 def array_double(long N, long M):
 	start = timeit.default_timer()
-	#openmp.omp_set_dynamic(2)
 	openmp.omp_set_num_threads(8)
 	cdef long i, j
 	cdef double [:, :] inp
@@ -17,7 +16,7 @@ def array_double(long N, long M):
 	inp = np.random.rand(N*M).reshape((N, M))
 	out = np.zeros((N, M))
 	with nogil:
-		for i in prange(N, schedule=guided):
+		for i in prange(N):
 			for j in range(M):
 				out[i, j] = sqrt(inp[i, j])
 
