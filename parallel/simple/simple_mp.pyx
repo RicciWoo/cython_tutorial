@@ -17,7 +17,7 @@ def array_double(long N, long M):
 	inp = np.random.rand(N*M).reshape((N, M))
 	out = np.zeros((N, M))
 	with nogil:
-		for i in prange(N, schedule=dynamic):
+		for i in prange(N, schedule=guided):
 			for j in prange(M):
 				out[i, j] = sqrt(inp[i, j])
 
