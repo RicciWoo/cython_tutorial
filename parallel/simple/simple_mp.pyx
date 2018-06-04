@@ -10,7 +10,7 @@ import timeit
 def array_double(long N, long M):
 	start = timeit.default_timer()
 	#openmp.omp_set_dynamic(2)
-	openmp.omp_set_num_threads(8)
+	openmp.omp_set_num_threads(16)
 	cdef long i, j
 	cdef double [:, :] inp
 	cdef double [:, :] out
