@@ -9,7 +9,7 @@ import timeit
 @cython.wraparound(False)
 def array_double(long N, long M):
 	start = timeit.default_timer()
-	openmp.omp_set_num_threads(12)
+	openmp.omp_set_num_threads(2)
 	cdef long i, j
 	cdef double [:, :] inp
 	cdef double [:, :] out
