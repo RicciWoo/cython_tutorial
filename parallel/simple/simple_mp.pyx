@@ -18,7 +18,7 @@ def array_double(long N, long M):
 	out = np.zeros((N, M))
 	with nogil:
 		for i in prange(N, schedule=guided):
-			for j in prange(M):
+			for j in range(M):
 				out[i, j] = sqrt(inp[i, j])
 
 	stop = timeit.default_timer()
