@@ -16,10 +16,10 @@ def array_double(long N, long M):
 	# inp = np.random.rand(N*M).reshape((N, M))
 	inp = np.ones((N, M))
 	out = np.zeros((N, M))
-	cdef int n_thr = threadsavailable(schedule='guided')
+	cdef int n_thr = threadsavailable(schedule='dynamic')
 	openmp.omp_set_num_threads(n_thr)
 	with nogil:
-		for i in prange(N, schedule='guided'):
+		for i in prange(N, schedule='dynamic'):
 			for j in range(M):
 				out[i, j] = sqrt(inp[i, j])
 
