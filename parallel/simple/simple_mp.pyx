@@ -25,4 +25,4 @@ def array_double(long N, long M):
 
 	stop = timeit.default_timer()
 	print(stop - start)
-	print(n_thr)
+	# print(n_thr)
