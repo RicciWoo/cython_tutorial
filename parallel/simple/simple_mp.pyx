@@ -1,7 +1,7 @@
 import numpy as np
 import cython
 from libc.math cimport sqrt
-from cython.parallel import prange, threadsavailable
+from cython.parallel cimport prange, threadsavailable
 cimport openmp
 import timeit
 
