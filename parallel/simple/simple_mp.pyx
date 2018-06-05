@@ -13,7 +13,8 @@ def array_double(long N, long M):
 	cdef long i, j
 	cdef double [:, :] inp
 	cdef double [:, :] out
-	inp = np.random.rand(N*M).reshape((N, M))
+	# inp = np.random.rand(N*M).reshape((N, M))
+	inp = np.ones((N, M))
 	out = np.zeros((N, M))
 	with nogil:
 		for i in prange(N):
