@@ -16,9 +16,8 @@ def array_double(long N, long M):
 	# inp = np.random.rand(N*M).reshape((N, M))
 	inp = np.ones((N, M))
 	out = np.zeros((N, M))
-	cdef int n_thr
+	cdef int n_thr = threadsavailable(schedule='guided')
 	with nogil:
-		n_thr = threadsavailable(schedule='guided')
 		openmp.omp_set_num_threads(n_thr)
 		for i in prange(N, schedule='guided'):
 			for j in range(M):
