@@ -19,7 +19,6 @@ def array_double(long N, long M):
 	cdef int n_thr
 	with nogil:
 		n_thr = threadsavailable(schedule='guided')
-		print(n_thr)
 		openmp.omp_set_num_threads(n_thr)
 		for i in prange(N, schedule='guided'):
 			for j in range(M):
@@ -27,3 +26,4 @@ def array_double(long N, long M):
 
 	stop = timeit.default_timer()
 	print(stop - start)
+	print(n_thr)
