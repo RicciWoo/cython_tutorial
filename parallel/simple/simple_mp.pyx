@@ -8,7 +8,6 @@ import timeit
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def array_double(long N, long M):
-	start = timeit.default_timer()
 	# openmp.omp_set_num_threads(8)
 	cdef long i, j
 	cdef double [:, :] inp
@@ -16,6 +15,8 @@ def array_double(long N, long M):
 	# inp = np.random.rand(N*M).reshape((N, M))
 	inp = np.ones((N, M))
 	out = np.zeros((N, M))
+	
+	start = timeit.default_timer()
 	with nogil:
 		for i in prange(N, schedule='guided'):
 			for j in range(M):

@@ -14,6 +14,7 @@ def array_double(long N, long M):
 	inp = np.random.rand(N*M).reshape((N, M))
 	out = np.zeros((N, M))
 	
+	start = timeit.default_timer()
 	for i in range(N):
 		for j in range(M):
 			out[i, j] = sqrt(inp[i, j])
