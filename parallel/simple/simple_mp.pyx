@@ -2,7 +2,7 @@ import numpy as np
 import cython
 from libc.math cimport sqrt, exp
 from cython.parallel import prange
-# cimport openmp
+cimport openmp
 import timeit
 
 @cython.boundscheck(False)
