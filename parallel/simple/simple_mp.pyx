@@ -8,7 +8,10 @@ import timeit
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def array_double(long N, long M):
-	# openmp.omp_set_num_threads(48)
+	# cdef int num_threads = openmp.omp_get_num_procs()
+	# num_threads = max(2, num_threads//2)
+	# openmp.omp_set_dynamic(0)
+	# openmp.omp_set_num_threads(num_threads)
 	cdef long i, j
 	cdef double [:, :] inp
 	cdef double [:, :] out
