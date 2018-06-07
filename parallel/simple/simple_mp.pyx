@@ -2,13 +2,13 @@ import numpy as np
 import cython
 from libc.math cimport sqrt, exp
 from cython.parallel import prange
-cimport openmp
+# cimport openmp
 import timeit
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 def array_double(long N, long M):
-	openmp.omp_set_num_threads(1)
+	# openmp.omp_set_num_threads(48)
 	cdef long i, j
 	cdef double [:, :] inp
 	cdef double [:, :] out

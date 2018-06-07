@@ -1,8 +1,7 @@
 import numpy as np
 import cython
-from libc.math cimport sqrt
+from libc.math cimport sqrt, exp
 import timeit
-
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
@@ -17,7 +16,7 @@ def array_double(long N, long M):
 	start = timeit.default_timer()
 	for i in range(N):
 		for j in range(M):
-			out[i, j] = sqrt(inp[i, j])
+			out[i, j] = sqrt(exp(-sqrt(inp[i, j]/2.))) * sqrt(exp(-sqrt(inp[i, j])))
 
 	stop = timeit.default_timer()
 	print(stop - start)
