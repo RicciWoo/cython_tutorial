@@ -20,7 +20,7 @@ def array_double(long N, long M):
 	with nogil:
 		for i in prange(N, schedule='guided'):
 			for j in range(M):
-				out[i, j] = sqrt(exp(-sqrt(inp[i, j])))
+				out[i, j] = sqrt(exp(-sqrt(inp[i, j]/2.))) * sqrt(exp(-sqrt(inp[i, j])))
 
 	stop = timeit.default_timer()
 	print(stop - start)
