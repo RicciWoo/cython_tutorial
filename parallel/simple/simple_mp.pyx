@@ -1,6 +1,6 @@
 import numpy as np
 import cython
-from libc.math cimport sqrt
+from libc.math cimport sqrt, exp
 from cython.parallel import prange
 # cimport openmp
 import timeit
@@ -15,12 +15,12 @@ def array_double(long N, long M):
 	# inp = np.random.rand(N*M).reshape((N, M))
 	inp = np.ones((N, M))
 	out = np.zeros((N, M))
-	
+
 	start = timeit.default_timer()
 	with nogil:
 		for i in prange(N, schedule='guided'):
 			for j in range(M):
-				out[i, j] = sqrt(inp[i, j])
+				out[i, j] = sqrt(exp(-sqrt(inp[i, j])))
 
 	stop = timeit.default_timer()
 	print(stop - start)
