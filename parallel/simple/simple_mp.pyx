@@ -17,13 +17,17 @@ def array_double(long N, long M):
 	cdef double [:, :] out
 	# inp = np.random.rand(N*M).reshape((N, M))
 	inp = np.ones((N, M))
-	out = np.zeros((N, M))
+	# out = np.zeros((N, M))
+	out = np.empty((N, M))
 
 	start = timeit.default_timer()
 	with nogil:
 		for i in prange(N, schedule='guided'):
 			for j in range(M):
-				out[i, j] = sqrt(exp(-sqrt(inp[i, j]/2.))) * sqrt(exp(-sqrt(inp[i, j])))
+				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
+
+	# for i in range(N):
+	# 	print(out[i, 0])
 
 	stop = timeit.default_timer()
 	print(stop - start)
