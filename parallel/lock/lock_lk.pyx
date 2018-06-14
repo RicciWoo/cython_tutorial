@@ -23,6 +23,7 @@ def array_double(long N, long M):
 	with nogil:
 		openmp.omp_init_lock(&lock)
 		for i in prange(N):
+			# maxi = i
 			for j in range(M):
 				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
 				openmp.omp_set_lock(&lock)
