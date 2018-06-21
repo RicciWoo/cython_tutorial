@@ -1,0 +1,1 @@
+python schedule_dy_setup.py build_ext --inplace

@@ -1,0 +1,1 @@
+python schedule_gu_setup.py build_ext --inplace
