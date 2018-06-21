@@ -22,7 +22,7 @@ def array_double(long N, long M):
 
 	start = timeit.default_timer()
 	with nogil:
-		for i in prange(N, schedule='dynamic'):
+		for i in prange(N, schedule='static'):
 			for j in range(M):
 				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
 
