@@ -1,0 +1,1 @@
+python lock_fn_setup.py build_ext --inplace

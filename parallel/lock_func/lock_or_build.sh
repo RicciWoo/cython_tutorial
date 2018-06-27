@@ -1,0 +1,1 @@
+python lock_or_setup.py build_ext --inplace
