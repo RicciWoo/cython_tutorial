@@ -7,8 +7,17 @@ import timeit
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
+
+cdef void parallel_run(long M, long i, double[:,:] inp, 
+				double[:,:] out, double* temp) nogil:
+	cdef long j
+	for j in range(M):
+		out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
+		# maxi = maxi + 1
+		temp[0] = temp[0] + 1
+
 def array_double(long N, long M):
-	cdef long i, j
+	cdef long i
 	cdef double [:, :] inp
 	cdef double [:, :] out
 	cdef double maxi = 0.0
@@ -23,13 +32,9 @@ def array_double(long N, long M):
 	with nogil:
 		openmp.omp_init_lock(&lock)
 		for i in prange(N):
-			# maxi = i
-			for j in range(M):
-				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
-				openmp.omp_set_lock(&lock)
-				# maxi = maxi + 1
-				temp[0] = temp[0] + 1
-				openmp.omp_unset_lock(&lock)
+			openmp.omp_set_lock(&lock)
+			parallel_run(M, i, inp, out, temp)
+			openmp.omp_unset_lock(&lock)
 		openmp.omp_destroy_lock(&lock)
 	stop = timeit.default_timer()
 	print(stop - start)
