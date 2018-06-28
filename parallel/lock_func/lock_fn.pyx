@@ -11,7 +11,7 @@ import timeit
 cdef void parallel_run(long M, long i, double[:,:] inp, 
 				double[:,:] out, double* temp) nogil:
 	cdef long j
-	double var[3]
+	cdef double var[3]
 	for j in range(M):
 		var[0] = sqrt(exp(-sqrt(inp[i, j]*(i+j))))
 		out[i, j] = var[0] * var[0]
