@@ -9,7 +9,7 @@ import timeit
 @cython.wraparound(False)
 
 cdef void loc_fun(double[:, :] inp, double[:, :] out, long i,
-			double *cnt_ptr, double *res_ptr) nogil:
+				long M, double *cnt_ptr, double *res_ptr) nogil:
 	cdef:
 		long j, k
 		double summ
@@ -21,7 +21,7 @@ cdef void loc_fun(double[:, :] inp, double[:, :] out, long i,
 		cnt_ptr[0] = cnt_ptr[0] + 1
 		# openmp.omp_unset_lock(&lock)
 		for k in range(3):
-			var[k] = N * M
+			var[k] = M
 		summ = 0
 		for k in range(3):
 			# summ += var[k]
@@ -47,7 +47,7 @@ def array_double(long N, long M, int num_threads):
 		# openmp.omp_init_lock(&lock)
 		# for i in range(N):
 		for i in prange(N, schedule='dynamic'):
-			loc_fun(inp, out, i, cnt_ptr, res_ptr)
+			loc_fun(inp, out, i, M, cnt_ptr, res_ptr)
 		# openmp.omp_destroy_lock(&lock)
 	stop = timeit.default_timer()
 	print(stop - start)

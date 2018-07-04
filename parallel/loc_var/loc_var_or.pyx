@@ -34,7 +34,7 @@ def array_double(long N, long M):
 				# cnt_ptr[0] = cnt_ptr[0] + 1
 				# openmp.omp_unset_lock(&lock)
 				for k in range(3):
-					var[k] = N * M
+					var[k] = M
 				summ = 0
 				for k in range(3):
 					summ += var[k]

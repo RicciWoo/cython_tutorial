@@ -28,7 +28,7 @@ def array_double(long N, long M, int num_threads=0):
 			for j in range(M):
 				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
 				for k in range(3):
-					var[k] = N * M
+					var[k] = M
 				summ = 0
 				for k in range(3):
 					summ = summ + var[k]
