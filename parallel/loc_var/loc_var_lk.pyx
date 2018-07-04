@@ -27,15 +27,15 @@ def array_double(long N, long M, int num_threads=0):
 		for i in prange(N, schedule='dynamic'):
 			for j in range(M):
 				out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
-				openmp.omp_set_lock(&lock)
-				cnt_ptr[0] = cnt_ptr[0] + 1
-				openmp.omp_unset_lock(&lock)
 				for k in range(3):
 					var[k] = N * M
 				summ = 0
 				for k in range(3):
 					summ = summ + var[k]
+				openmp.omp_set_lock(&lock)
+				cnt_ptr[0] = cnt_ptr[0] + 1
 				res_ptr[0] = res_ptr[0] + summ
+				openmp.omp_unset_lock(&lock)
 		openmp.omp_destroy_lock(&lock)
 	stop = timeit.default_timer()
 	print(stop - start)
