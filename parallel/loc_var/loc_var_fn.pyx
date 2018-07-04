@@ -8,8 +8,8 @@ import timeit
 @cython.boundscheck(False)
 @cython.wraparound(False)
 
-cdef loc_fun(double[:, :] inp, double[:, :] out, long i,
-			double *cnt_ptr, double *res_ptr):
+cdef void loc_fun(double[:, :] inp, double[:, :] out, long i,
+			double *cnt_ptr, double *res_ptr) nogil:
 	cdef:
 		long j, k
 		double summ
