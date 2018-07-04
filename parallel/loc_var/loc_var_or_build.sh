@@ -1,0 +1,1 @@
+python loc_var_or_setup.py build_ext --inplace
