@@ -15,7 +15,7 @@ cdef void loc_fun(double[:, :] inp, double[:, :] out, long i,
 		double summ
 		double var[3]
 		openmp.omp_lock_t lock
-		openmp.omp_init_lock(&lock)
+	openmp.omp_init_lock(&lock)
 	for j in range(M):
 		out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
 		for k in range(3):
