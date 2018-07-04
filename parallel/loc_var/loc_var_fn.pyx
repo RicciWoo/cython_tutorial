@@ -14,23 +14,26 @@ cdef void loc_fun(double[:, :] inp, double[:, :] out, long i,
 		long j, k
 		double summ
 		double var[3]
+		openmp.omp_lock_t lock
+		openmp.omp_init_lock(&lock)
 	for j in range(M):
 		out[i, j] = sqrt(exp(-sqrt(inp[i, j]*(i+j)))) * sqrt(exp(-sqrt(inp[i, j]*(i+j))))
-		# openmp.omp_set_lock(&lock)
-		# cnt += 1
-		cnt_ptr[0] = cnt_ptr[0] + 1
-		# openmp.omp_unset_lock(&lock)
 		for k in range(3):
 			var[k] = M
 		summ = 0
 		for k in range(3):
 			# summ += var[k]
 			summ = summ + var[k]
+		openmp.omp_set_lock(&lock)
+		# cnt += 1
+		cnt_ptr[0] = cnt_ptr[0] + 1
 		# res += summ
 		res_ptr[0] = res_ptr[0] + summ
+		openmp.omp_unset_lock(&lock)
+	openmp.omp_destroy_lock(&lock)
 
 # def array_double(long N, long M):
-def array_double(long N, long M, int num_threads):
+def array_double(long N, long M, int num_threads=0):
 	cdef:
 		long i
 		double cnt = 0.0, *cnt_ptr = &cnt
