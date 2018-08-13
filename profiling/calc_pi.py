@@ -7,6 +7,7 @@ import time
 def recip_square(i):
     return 1./i**2
 
+@profile
 def approx_pi(n=10000000):
     val = 0.
     for k in range(1,n+1):
